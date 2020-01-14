@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan 14 09:34:28 2020
+
+@author: ANANTA SRIKAR
+"""
+
 import pygame
 
 pygame.init()
@@ -44,6 +51,12 @@ while(running):
                 playerX_change = 0
             
     playerX += playerX_change
+    
+    if (playerX < 0):
+        playerX = 0
+    
+    if (playerX > 736):
+        playerX = 736
 
     player(playerX, playerY)
     pygame.display.update()
