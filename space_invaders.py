@@ -6,6 +6,7 @@ Created on Sat Jan 14 09:34:28 2020
 """
 
 import pygame
+import random
 
 pygame.init()
 
@@ -30,8 +31,8 @@ def player(x, y):
 # enemy
 enemyImage = pygame.image.load('res/enemy.png')
 
-enemyX = 370
-enemyY = 10
+enemyX = random.randint(0,800)
+enemyY = random.randint(50,150)
 
 enemyX_change = 0
 
@@ -65,7 +66,7 @@ while(running):
     if (playerX < 0):
         playerX = 0
     
-    if (playerX > 736):
+    elif (playerX > 736):
         playerX = 736
 
     player(playerX, playerY)
