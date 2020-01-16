@@ -34,7 +34,8 @@ enemyImage = pygame.image.load('res/enemy.png')
 enemyX = random.randint(0,800)
 enemyY = random.randint(50,150)
 
-enemyX_change = 0
+enemyX_change = 0.3
+enemyY_change = 40
 
 def enemy(x,y):
     screen.blit(enemyImage, (x,y))
@@ -60,7 +61,8 @@ while(running):
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
                 playerX_change = 0
-            
+
+    #adding boundaries to player's ship       
     playerX += playerX_change
     
     if (playerX < 0):
@@ -68,6 +70,18 @@ while(running):
     
     elif (playerX > 736):
         playerX = 736
+
+    enemyX += enemyX_change
+    
+    if (enemyX < 0):
+        enemyX = 0
+        enemyX_change = -enemyX_change
+        enemyY += enemyY_change
+    
+    elif (enemyX > 736):
+        enemyX = 736
+        enemyX_change = -enemyX_change
+        enemyY += enemyY_change
 
     player(playerX, playerY)
     enemy(enemyX, enemyY)
