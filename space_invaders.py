@@ -12,6 +12,10 @@ pygame.init()
 
 screen = pygame.display.set_mode((800,600))
 
+#Background
+
+background = pygame.image.load('res/background.png')
+
 #Title and Icon
 pygame.display.set_caption('Space Invaders')
 icon = pygame.image.load('res/rocket.png')
@@ -34,7 +38,7 @@ enemyImage = pygame.image.load('res/enemy.png')
 enemyX = random.randint(0,800)
 enemyY = random.randint(50,150)
 
-enemyX_change = 0.3
+enemyX_change = 3
 enemyY_change = 40
 
 def enemy(x,y):
@@ -47,16 +51,18 @@ while(running):
 
     screen.fill((0,0,0)) #(R, G, B)
 
+    screen.blit(background,(0,0))
+
     for event in pygame.event.get():
         if (event.type == pygame.QUIT): #quits game when close button is pressed
             running = False
         if (event.type == pygame.KEYDOWN):
 
             if (event.key == pygame.K_LEFT):
-                playerX_change = -0.3
+                playerX_change = -3
 
             if (event.key == pygame.K_RIGHT):
-                playerX_change += 0.3
+                playerX_change = 3
 
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
