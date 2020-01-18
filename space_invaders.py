@@ -46,6 +46,17 @@ def enemy(x,y):
 
 running = True
 
+# bullet 
+bulletImage = pygame.image.load('res/bullet.png')
+
+bulletX = 0
+bulletY = 0
+
+bulletYchange = 0
+
+def bullet(x,y):
+    screen.blit(bulletImage, (x,y))
+
 #game loop
 while(running):
 
@@ -63,13 +74,21 @@ while(running):
 
             if (event.key == pygame.K_RIGHT):
                 playerX_change = 3
+            
+            if (event.key == pygame.K_SPACE):
+                bulletX = playerX
+                bulletY = playerY
+                bulletYchange = -4
 
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
                 playerX_change = 0
-
+            
+            
     #adding boundaries to player's ship       
     playerX += playerX_change
+
+    bulletY += bulletYchange
     
     if (playerX < 0):
         playerX = 0
@@ -91,4 +110,5 @@ while(running):
 
     player(playerX, playerY)
     enemy(enemyX, enemyY)
+    bullet(bulletX, bulletY)
     pygame.display.update()
