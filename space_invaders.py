@@ -38,7 +38,7 @@ enemyImage = pygame.image.load('res/enemy.png')
 enemyX = random.randint(0,800)
 enemyY = random.randint(50,150)
 
-enemyX_change = 3
+enemyX_change = 2
 enemyY_change = 40
 
 def enemy(x,y):
