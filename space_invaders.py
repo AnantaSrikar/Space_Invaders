@@ -53,9 +53,12 @@ bulletX = 0
 bulletY = 0
 
 bulletYchange = 0
+bullet_state = "ready"
 
-def bullet(x,y):
-    screen.blit(bulletImage, (x,y))
+def fire_bullet(x,y):
+    global bullet_state
+    bullet_state = "fire"
+    screen.blit(bulletImage, (x + 16, y + 10))
 
 #game loop
 while(running):
@@ -76,9 +79,11 @@ while(running):
                 playerX_change = 3
             
             if (event.key == pygame.K_SPACE):
-                bulletX = playerX
-                bulletY = playerY
-                bulletYchange = -4
+                if (bullet_state == "ready"):
+                    bulletX = playerX
+                    bulletY = playerY
+                    bulletYchange = -4
+                    fire_bullet(bulletX, bulletY)
 
         if (event.type == pygame.KEYUP):
             if (event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):
@@ -88,7 +93,9 @@ while(running):
     #adding boundaries to player's ship       
     playerX += playerX_change
 
-    bulletY += bulletYchange
+    if (bullet_state == "fire"):
+        fire_bullet(bulletX, bulletY)
+        bulletY += bulletYchange
     
     if (playerX < 0):
         playerX = 0
@@ -108,7 +115,9 @@ while(running):
         enemyX_change = -enemyX_change
         enemyY += enemyY_change
 
+    if (bulletY <= 0):
+        bullet_state = "ready"
+
     player(playerX, playerY)
     enemy(enemyX, enemyY)
-    bullet(bulletX, bulletY)
     pygame.display.update()
