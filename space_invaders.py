@@ -80,6 +80,7 @@ def fire_bullet(x,y):
     bullet_state = "fire"
     screen.blit(bulletImage, (x + 16, y + 10))
 
+# Score
 font = pygame.font.Font('freesansbold.ttf', 32)
 scoreX = 10
 scoreY = 10
@@ -87,6 +88,15 @@ scoreY = 10
 def showScore(x, y):
     score_rend = font.render("Score : {}".format(score), True, (255, 255, 255))
     screen.blit(score_rend, (x, y))
+
+# Game Over
+over_font = pygame.font.Font('freesansbold.ttf', 64)
+
+def show_game_over():
+    over_text = over_font.render("GAME OVER", True, (255, 255, 255))
+    screen.blit(over_text, (200 ,250))
+    
+    
 
 def isCollision(bulletX, bulletY, enemyX, enemyY):
     distance = math.sqrt((math.pow((bulletX - enemyX), 2) + (math.pow((bulletY - enemyY), 2))))
@@ -142,6 +152,15 @@ while(running):
         playerX = 736
 
     for i in range(no_of_enemies):
+
+        #Game Over
+
+        if (enemyY[i] > 440):
+            for j in range(no_of_enemies):
+                enemyY[j] = 2000
+            bullet_state = "ready"
+            show_game_over()
+            break
         
         enemyX[i] += enemyX_change[i]
         
