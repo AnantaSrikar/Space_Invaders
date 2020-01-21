@@ -6,6 +6,7 @@ Created on Sat Jan 14 09:34:28 2020
 """
 
 import pygame
+from pygame import mixer
 import random
 import math 
 
@@ -18,6 +19,12 @@ screen = pygame.display.set_mode((800,600))
 #Background
 
 background = pygame.image.load('res/background.png')
+
+#Background Sound
+
+mixer.music.load('res/background.wav')
+
+mixer.music.play(-1) # -1 makes sure it playes forever
 
 #Title and Icon
 pygame.display.set_caption('Space Invaders')
@@ -109,6 +116,8 @@ while(running):
             
             if (event.key == pygame.K_SPACE):
                 if (bullet_state == "ready"):
+                    bullet_sound = mixer.Sound('res/laser.wav')
+                    bullet_sound.play()
                     bulletX = playerX
                     bulletY = playerY
                     bulletYchange = -4
@@ -147,10 +156,13 @@ while(running):
             enemyY[i] += enemyY_change[i]
         
         if (isCollision(bulletX, bulletY, enemyX[i], enemyY[i])):
+            
+            bullet_sound = mixer.Sound('res/explosion.wav')
+            bullet_sound.play()            
             bullet_state = "ready"
             bulletY = 480
             score += 1
-            
+
             enemyX[i] = random.randint(0,800)
             enemyY[i] = random.randint(50,150)
         
