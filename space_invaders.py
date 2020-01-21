@@ -7,6 +7,7 @@ Created on Sat Jan 14 09:34:28 2020
 
 import pygame
 import random
+import math 
 
 pygame.init()
 
@@ -59,6 +60,14 @@ def fire_bullet(x,y):
     global bullet_state
     bullet_state = "fire"
     screen.blit(bulletImage, (x + 16, y + 10))
+
+def isCollision(bulletX, bulletY, enemyX, enemyY):
+    distance = math.sqrt((math.pow((bulletX - enemyX), 2) + (math.pow((bulletY - enemyY), 2))))
+
+    if (distance < 27):
+        return True
+    else:
+        return False
 
 #game loop
 while(running):
@@ -117,6 +126,9 @@ while(running):
 
     if (bulletY <= 0):
         bullet_state = "ready"
+
+    if (isCollision(bulletX, bulletY, enemyX, enemyY    )):
+        print("Enemy has been hit!")
 
     player(playerX, playerY)
     enemy(enemyX, enemyY)
