@@ -11,6 +11,8 @@ import math
 
 pygame.init()
 
+score = 0
+
 screen = pygame.display.set_mode((800,600))
 
 #Background
@@ -128,7 +130,13 @@ while(running):
         bullet_state = "ready"
 
     if (isCollision(bulletX, bulletY, enemyX, enemyY    )):
-        print("Enemy has been hit!")
+        bullet_state = "ready"
+        bulletY = 480
+        score += 1
+
+        enemyX = random.randint(0,800)
+        enemyY = random.randint(50,150)
+
 
     player(playerX, playerY)
     enemy(enemyX, enemyY)
