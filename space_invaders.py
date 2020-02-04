@@ -14,6 +14,9 @@ pygame.init()
 
 score = 0
 
+red = (200, 0, 0)
+bright_red = (255, 0, 0)
+
 screen = pygame.display.set_mode((800,600))
 
 #Background
@@ -95,8 +98,19 @@ over_font = pygame.font.Font('freesansbold.ttf', 64)
 def show_game_over():
     over_text = over_font.render("GAME OVER", True, (255, 255, 255))
     screen.blit(over_text, (200 ,250))
+
+def button():
+    mouse = pygame.mouse.get_pos()
+    click = pygame.mouse.get_pressed()
+
+    if ((300 < mouse[0] < 300 + 200)) and (450 < mouse[1] < 450 + 100):
+        pygame.draw.rect(screen, bright_red, (300, 450, 200, 100))
+        if(click[0] == 1):
+            return True
     
-    
+    else:
+        pygame.draw.rect(screen, red, (300, 450, 200, 100))    
+        
 
 def isCollision(bulletX, bulletY, enemyX, enemyY):
     distance = math.sqrt((math.pow((bulletX - enemyX), 2) + (math.pow((bulletY - enemyY), 2))))
@@ -160,6 +174,8 @@ while(running):
                 enemyY[j] = 2000
             bullet_state = "ready"
             show_game_over()
+            if(button()):
+                print("Restart game")
             break
         
         enemyX[i] += enemyX_change[i]
