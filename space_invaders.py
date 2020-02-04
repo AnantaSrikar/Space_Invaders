@@ -195,3 +195,5 @@ while(running):
     showScore(scoreX, scoreY)
     
     pygame.display.update()
+
+    # TODO : Add replay button
