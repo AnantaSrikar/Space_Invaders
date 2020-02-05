@@ -12,8 +12,11 @@ import math
 
 bullet_state = "ready"
 
+restart = True
+
 def main():
 
+    global restart
     global bullet_state
 
     pygame.init()
@@ -113,6 +116,9 @@ def main():
             pygame.draw.rect(screen, bright_red, (300, 450, 200, 100))
             if(click[0] == 1):
                 return True
+
+            else :
+                return False
         
         else:
             pygame.draw.rect(screen, red, (300, 450, 200, 100))    
@@ -136,6 +142,7 @@ def main():
         for event in pygame.event.get():
             if (event.type == pygame.QUIT): #quits game when close button is pressed
                 running = False
+                restart = False
             if (event.type == pygame.KEYDOWN):
 
                 if (event.key == pygame.K_LEFT):
@@ -181,7 +188,9 @@ def main():
                 bullet_state = "ready"
                 show_game_over()
                 if(button()):
-                    print("Restart game")
+                    restart = True
+                    running = False
+
                 break
             
             enemyX[i] += enemyX_change[i]
@@ -219,6 +228,8 @@ def main():
         pygame.display.update()
 
 if __name__ == '__main__':
-    main()
+        while(restart):
+            running = True
+            main()
 
     # TODO : Add replay button
