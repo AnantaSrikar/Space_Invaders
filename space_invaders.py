@@ -135,7 +135,7 @@ def main():
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         
-        if ((300 < mouse[0] < 300 + 200)) and (450 < mouse[1] < 450 + 100):
+        if ((100 < mouse[0] < 100 + 200)) and (400 < mouse[1] < 400 + 100):
             pygame.draw.rect(screen, bright_red, (100, 400, 200, 100))
             button_text("EXIT", (155, 440), 30)
             
@@ -219,7 +219,8 @@ def main():
                     running = False
 
                 elif(exit_button()):
-                    print("Exit the game")
+                    restart = False
+                    running = False
                 break
             
             enemyX[i] += enemyX_change[i]
