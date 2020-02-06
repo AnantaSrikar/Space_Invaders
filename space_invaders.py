@@ -157,7 +157,7 @@ def main():
                         bullet_sound.play()
                         bulletX = playerX
                         bulletY = playerY
-                        bulletYchange = -4
+                        bulletYchange = -9
                         fire_bullet(bulletX, bulletY)
 
             if (event.type == pygame.KEYUP):
