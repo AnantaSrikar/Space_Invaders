@@ -185,6 +185,7 @@ def main():
             if (enemyY[i] > 440):
                 for j in range(no_of_enemies):
                     enemyY[j] = 2000
+                playerY = 2000
                 bullet_state = "ready"
                 show_game_over()
                 if(button()):
