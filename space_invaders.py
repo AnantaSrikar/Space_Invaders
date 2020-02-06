@@ -242,4 +242,5 @@ if __name__ == '__main__':
             running = True
             main()
 
-    # TODO : Add replay button
+    # TODO : Add exit button
+    # TODO : make .exe file
