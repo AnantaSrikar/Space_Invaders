@@ -117,9 +117,9 @@ def main():
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         
-        if ((450 < mouse[0] < 450 + 200)) and (400 < mouse[1] < 400 + 100):
-            pygame.draw.rect(screen, bright_red, (450, 400, 200, 100))
-            button_text("PLAY AGAIN", (455, 440), 30)
+        if ((500 < mouse[0] < 500 + 200)) and (400 < mouse[1] < 400 + 100):
+            pygame.draw.rect(screen, bright_red, (500, 400, 200, 100))
+            button_text("PLAY AGAIN", (505, 440), 30)
             
             if(click[0] == 1):
                 return True
@@ -128,8 +128,8 @@ def main():
                 return False
         
         else:
-            pygame.draw.rect(screen, red, (450, 400, 200, 100)) 
-            button_text("PLAY AGAIN", (455, 440), 30)
+            pygame.draw.rect(screen, red, (500, 400, 200, 100)) 
+            button_text("PLAY AGAIN", (505, 440), 30)
 
     def exit_button():
         mouse = pygame.mouse.get_pos()
@@ -263,4 +263,6 @@ if __name__ == '__main__':
             main()
 
     # TODO : Add exit button
+    # TODO : Add up arrow as shoot
+    # TODO : Store high score
     # TODO : make .exe file
