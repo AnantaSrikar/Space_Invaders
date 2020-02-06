@@ -108,20 +108,18 @@ def main():
         over_text = over_font.render("GAME OVER", True, (255, 255, 255))
         screen.blit(over_text, (200 ,250))
 
-    button_font = pygame.font.Font('freesansbold.ttf', 32)
+    def button_text(text, coor, textSize):
+        button_font = pygame.font.Font('freesansbold.ttf', textSize)
+        button_texts  = button_font.render(text, True, (255, 255, 255))
+        screen.blit(button_texts, coor)
 
-    def button_text():
-        button_text  = button_font.render("RESTART", True, (255, 255, 255))
-        screen.blit(button_text, (325, 480))
-
-    def button():
+    def restart_button():
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         
-
-        if ((300 < mouse[0] < 300 + 200)) and (450 < mouse[1] < 450 + 100):
-            pygame.draw.rect(screen, bright_red, (300, 450, 200, 100))
-            button_text()
+        if ((450 < mouse[0] < 450 + 200)) and (400 < mouse[1] < 400 + 100):
+            pygame.draw.rect(screen, bright_red, (450, 400, 200, 100))
+            button_text("PLAY AGAIN", (455, 440), 30)
             
             if(click[0] == 1):
                 return True
@@ -130,8 +128,26 @@ def main():
                 return False
         
         else:
-            pygame.draw.rect(screen, red, (300, 450, 200, 100)) 
-            button_text()   
+            pygame.draw.rect(screen, red, (450, 400, 200, 100)) 
+            button_text("PLAY AGAIN", (455, 440), 30)
+
+    def exit_button():
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        
+        if ((300 < mouse[0] < 300 + 200)) and (450 < mouse[1] < 450 + 100):
+            pygame.draw.rect(screen, bright_red, (100, 400, 200, 100))
+            button_text("EXIT", (155, 440), 30)
+            
+            if(click[0] == 1):
+                return True
+
+            else :
+                return False
+        
+        else:
+            pygame.draw.rect(screen, red, (100, 400, 200, 100)) 
+            button_text("EXIT", (155, 440), 30)   
             
 
     def isCollision(bulletX, bulletY, enemyX, enemyY):
@@ -198,9 +214,12 @@ def main():
                 playerY = 2000
                 bullet_state = "ready"
                 show_game_over()
-                if(button()):
+                if(restart_button()):
                     restart = True
                     running = False
+
+                elif(exit_button()):
+                    print("Exit the game")
                 break
             
             enemyX[i] += enemyX_change[i]
