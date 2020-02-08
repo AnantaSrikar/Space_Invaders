@@ -263,4 +263,3 @@ if __name__ == '__main__':
             main()
 
     # TODO : Store high score
-    # TODO : make .exe file
