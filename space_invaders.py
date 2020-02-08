@@ -262,6 +262,5 @@ if __name__ == '__main__':
             running = True
             main()
 
-    # TODO : Add up arrow as shoot
     # TODO : Store high score
     # TODO : make .exe file
