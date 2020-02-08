@@ -177,7 +177,7 @@ def main():
                 if (event.key == pygame.K_RIGHT):
                     playerX_change = 3
                 
-                if (event.key == pygame.K_SPACE):
+                if (event.key == pygame.K_SPACE or event.key == pygame.K_UP):
                     if (bullet_state == "ready"):
                         bullet_sound = mixer.Sound('res/laser.wav')
                         bullet_sound.play()
@@ -262,7 +262,6 @@ if __name__ == '__main__':
             running = True
             main()
 
-    # TODO : Add exit button
     # TODO : Add up arrow as shoot
     # TODO : Store high score
     # TODO : make .exe file
