@@ -19,6 +19,8 @@ def main():
     global restart
     global bullet_state
 
+    shots = 0
+
     pygame.init()
 
     score = 0
@@ -181,6 +183,7 @@ def main():
                     if (bullet_state == "ready"):
                         bullet_sound = mixer.Sound('res/laser.wav')
                         bullet_sound.play()
+                        shots += 1
                         bulletX = playerX
                         bulletY = playerY
                         bulletYchange = -9
@@ -213,6 +216,8 @@ def main():
                     enemyY[j] = 2000
                 playerY = 2000
                 bullet_state = "ready"
+                accuracy = (score/shots) * 100
+                print("Accuracy = {}".format(accuracy))
                 show_game_over()
                 if(restart_button()):
                     restart = True
